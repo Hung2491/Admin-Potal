@@ -17,6 +17,7 @@ type AuthContextType = {
   errors: AuthErrors;
   user: UserProfile | null;
   documents: Documents[] | null;
+  isAuthenticated: boolean;
 };
 
 interface AuthProviderProps {
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [errors, setErrors] = useState<AuthErrors>({});
   const [user, setUser] = useState<UserProfile | null>(null);
   const [documents, setDocuments] = useState<Documents[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const signIn = async (data: SignInPayload): Promise<boolean> => {
     const e = ValidateSignIn(data);
     if (Object.keys(e).length > 0) {
@@ -43,6 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
         localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("refreshToken", res.data.refreshToken);
+        setIsAuthenticated(true);
         setErrors({});
         return true;
       }
@@ -69,6 +72,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const value: AuthContextType = {
+    isAuthenticated,
     documents,
     fetchDocument,
     signIn,

@@ -1,21 +1,18 @@
-import { Box } from "@mui/material";
+import { Box, } from "@mui/material";
 import Header from "../component/Header";
 import Sidebar from "../component/SideBar";
 import { useState } from "react";
-import Dashboard from "./Dashboard";
-import Profile from "./Profile";
-import Users from "./Users";
-import Document from "./Document";
-import Tasks from "./Tasks";
+
+import { Outlet } from "react-router";
 
 const Home = () => {
-  const [page, setPage] = useState("dashboard");
   const [open] = useState(true);
 
   const styles = {
     container: {
       display: "flex",
       height: "100%",
+    
     },
     box: {
       width: 1,
@@ -30,28 +27,14 @@ const Home = () => {
     },
   };
 
-  const renderPage = () => {
-    switch (page) {
-      case "Profile":
-        return <Profile />;
-      case "Users":
-        return <Users />;
-      case "Document":
-        return <Document />;
-      case "Tasks":
-        return <Tasks />;
-      default:
-        return <Dashboard />;
-    }
-  };
-
   return (
     <Box sx={styles.container}>
       <Header />
       <Box sx={styles.box}>
-        <Sidebar open={open} onSelectMenu={(menu) => setPage(menu)} />
+        <Sidebar open={open} />
         <Box component="main" sx={styles.main}>
-          {renderPage()}
+    
+          <Outlet />
         </Box>
       </Box>
     </Box>
