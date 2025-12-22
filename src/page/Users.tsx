@@ -3,6 +3,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { COLORS } from "../styles/Corlor";
 
 export default function Users() {
   return (
@@ -20,7 +21,7 @@ export default function Users() {
       <Button
         sx={{
           padding: "10px",
-          backgroundColor: "#2e6bcf",
+          backgroundColor: COLORS.primary,
           width: "13%",
           color: "white",
           fontSize: "18px",

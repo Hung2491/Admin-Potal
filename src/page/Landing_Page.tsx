@@ -12,6 +12,7 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import type React from "react";
+import { COLORS } from "../styles/Corlor";
 interface Data {
   title: string;
   discription: string;
@@ -52,8 +53,8 @@ const LandingPage = () => {
       height: "8%",
       padding: "0px 15% 0px 15%",
       borderBottomWidth: "1px",
-      borderColor: "gray",
-      backgroundColor: "white",
+      borderColor: COLORS.gray,
+      backgroundColor: COLORS.white,
     },
     toolbar: {
       display: "flex",
@@ -75,7 +76,7 @@ const LandingPage = () => {
     },
     signInButton: {
       color: "white",
-      backgroundColor: "#2e6bcf",
+      backgroundColor: COLORS.primary,
       fontWeight: 600,
       padding: "15px",
       borderRadius: "8px",
@@ -101,11 +102,11 @@ const LandingPage = () => {
       textAlign: "center",
       padding: "30px 0px 30px 0px",
       fontWeight: 500,
-      color: "gray",
+      color: COLORS.text.secondary,
     },
     ctaButton: {
       padding: "15px",
-      backgroundColor: "#2e6bcf",
+      backgroundColor: COLORS.primary,
       borderRadius: "8px",
     },
     cardContainer: {
@@ -121,7 +122,7 @@ const LandingPage = () => {
     iconButton: {
       padding: "15px",
       backgroundColor: "#e6eff8",
-      color: "#507bb6",
+      color: COLORS.icon,
       borderRadius: "8px",
     },
     cardTitle: {

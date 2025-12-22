@@ -9,14 +9,12 @@ import {
 } from "@mui/material";
 import Input from "../component/Input";
 import { useNavigate } from "react-router";
-import { UseAuth } from "../hook/AuthContext";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { ValidateSignIn } from "../utils/validate";
+import { COLORS } from "../styles/Corlor";
 function SignUp() {
   const navigate = useNavigate();
-  const { errors } = UseAuth();
   const [form, setForm] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -39,13 +37,13 @@ function SignUp() {
       marginBottom: "20px",
     },
     button: {
-      backgroundColor: "#3269be",
+      backgroundColor: COLORS.primary,
       margin: "20px 0px",
       borderRadius: "6px",
       padding: "10px",
     },
     link: {
-      color: "#3269be",
+      color: COLORS.primary,
       marginLeft: "4px",
     },
     subtitle: {
@@ -110,9 +108,7 @@ function SignUp() {
           />
           <Button
             onClick={() => {
-            
-                navigate("/signIn");
-              
+              navigate("/signIn");
             }}
             fullWidth
             sx={styles.button}

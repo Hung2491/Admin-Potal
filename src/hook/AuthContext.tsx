@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import type {
   AuthErrors,
   Documents,
@@ -8,7 +8,7 @@ import type {
 import { ValidateSignIn } from "../utils/validate";
 import { signInApi } from "../services/Api_Auth";
 import { fetchProfileApi } from "../services/Api_User";
-import { fetchDocumentApi } from "../services/Api_Document";
+import { detailDocumentApi, fetchDocumentApi } from "../services/Api_Document";
 
 type AuthContextType = {
   signIn: (data: SignInPayload) => void;
@@ -17,7 +17,9 @@ type AuthContextType = {
   errors: AuthErrors;
   user: UserProfile | null;
   documents: Documents[] | null;
+  detailDocuments: Documents | null;
   isAuthenticated: boolean;
+  detailDocument: (id: string) => void;
 };
 
 interface AuthProviderProps {
@@ -30,7 +32,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [errors, setErrors] = useState<AuthErrors>({});
   const [user, setUser] = useState<UserProfile | null>(null);
   const [documents, setDocuments] = useState<Documents[]>([]);
+  const [detailDocuments, setDetailDocuments] = useState<Documents | null>(
+    null
+  );
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  console.log(isAuthenticated);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    console.log(token);
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+    setIsAuthenticated(false);
+  }, []);
+
   const signIn = async (data: SignInPayload): Promise<boolean> => {
     const e = ValidateSignIn(data);
     if (Object.keys(e).length > 0) {
@@ -40,11 +57,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     try {
       const res = await signInApi(data);
-      if (res.status == 201) {
-        console.log(res.data);
 
-        localStorage.setItem("accessToken", res.data.accessToken);
-        localStorage.setItem("refreshToken", res.data.refreshToken);
+      if (res.status === 201) {
+        const { accessToken, refreshToken } = res.data;
+
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+
         setIsAuthenticated(true);
         setErrors({});
         return true;
@@ -55,8 +74,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
       return false;
     }
+
     return false;
   };
+
   // GET PROFILE
   const fetchProfile = async () => {
     const res = await fetchProfileApi();
@@ -71,7 +92,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setDocuments(data);
   };
 
+  const detailDocument = async (id: string): Promise<void> => {
+    const data = await detailDocumentApi(id);
+    console.log(data);
+    setDetailDocuments(data);
+  };
+
   const value: AuthContextType = {
+    detailDocuments,
     isAuthenticated,
     documents,
     fetchDocument,
@@ -79,6 +107,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     errors,
     fetchProfile,
     user,
+    detailDocument,
   };
   return (
     <AuthContextType.Provider value={value}>

@@ -13,6 +13,7 @@ import { useState } from "react";
 import Input from "../component/Input";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { COLORS } from "../styles/Corlor";
 const styles = {
   container: {
     display: "flex",
@@ -37,16 +38,16 @@ const styles = {
     padding: "20px 0px 20px 0px",
   },
   errorText: {
-    color: "red",
+    color: COLORS.error,
   },
   button: {
-    backgroundColor: "#3269be",
+    backgroundColor: COLORS.primary,
     margin: "20px 0px 25px 0px",
     borderRadius: "6px",
     padding: "15px",
   },
   buttonText: {
-    color: "white",
+    color: COLORS.white,
     fontWeight: "600",
   },
   bottomText: {
@@ -55,7 +56,7 @@ const styles = {
     justifyContent: "center",
   },
   registerLink: {
-    color: "#2e6bcf",
+    color: COLORS.primary,
     marginLeft: "4px",
   },
 };
@@ -69,6 +70,7 @@ function SignIn() {
   const signInNow = async () => {
     const success = await signIn(form);
     if (success) {
+      console.log("Đăng nhập thành công");
       navigate("/home");
     }
   };

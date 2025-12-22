@@ -1,6 +1,7 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { UseAuth } from "../hook/AuthContext";
 import { useEffect } from "react";
+import { COLORS } from "../styles/Corlor";
 
 const styles = {
   container: {
@@ -42,7 +43,7 @@ const styles = {
     width: "60%",
     padding: "15px",
     borderRadius: "8px",
-    backgroundColor: "#2e6bcf",
+    backgroundColor: COLORS.primary,
     color: "white",
     fontWeight: 600,
   },
@@ -53,7 +54,7 @@ export default function Profile() {
 
   useEffect(() => {
     fetchProfile();
-  }, [fetchProfile]);
+  }, []);
 
   if (!user) return null;
 
