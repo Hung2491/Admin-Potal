@@ -1,4 +1,4 @@
-import type { AuthErrors, SignInPayload } from "../types/auth";
+import type {  AuthErrors, SignInPayload } from "../types/AuthType";
 
 export const ValidateSignIn = (item: SignInPayload): AuthErrors => {
   const err: AuthErrors = {};
@@ -22,3 +22,5 @@ export const ValidateSignIn = (item: SignInPayload): AuthErrors => {
 
   return err;
 };
+
+

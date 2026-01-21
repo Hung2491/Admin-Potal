@@ -71,7 +71,7 @@ function SignIn() {
     const success = await signIn(form);
     if (success) {
       console.log("Đăng nhập thành công");
-      navigate("/home");
+      navigate("/MainLayout");
     }
   };
 

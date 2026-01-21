@@ -22,11 +22,11 @@ export default function Sidebar({ open }: SidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const menu = [
-    { lable: "Dashboard", icon: <DashboardIcon />, path: "/home" },
-    { lable: "Document", icon: <DescriptionIcon />, path: "/home/document" },
-    { lable: "Tasks", icon: <AssignmentIcon />, path: "/home/tasks" },
-    { lable: "Users", icon: <PeopleIcon />, path: "/home/users" },
-    { lable: "Profile", icon: <AccountCircleIcon />, path: "/home/profile" },
+    { lable: "Dashboard", icon: <DashboardIcon />, path: "/MainLayout" },
+    { lable: "Document", icon: <DescriptionIcon />, path: "/MainLayout/document" },
+    { lable: "Tasks", icon: <AssignmentIcon />, path: "/MainLayout/tasks" },
+    { lable: "Users", icon: <PeopleIcon />, path: "/MainLayout/users" },
+    { lable: "Profile", icon: <AccountCircleIcon />, path: "/MainLayout/profile" },
   ];
 
   return (

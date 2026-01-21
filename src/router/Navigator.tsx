@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router";
 import SignIn from "../page/SignIn";
 import SignUp from "../page/SignUp";
-import Home from "../page/Home";
+import MainLayout from "../layout/MainLayout";
 import LandingPage from "../page/Landing_Page";
 import Dashboard from "../page/Dashboard";
 import Users from "../page/Users";
@@ -17,7 +17,7 @@ function Navigator() {
       <Route path="/signIn" element={<SignIn />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
       <Route element={<ProtectedRoute />}>
-        <Route path="/home" element={<Home />}>
+        <Route path="/mainLayout" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="document" element={<Document />} />

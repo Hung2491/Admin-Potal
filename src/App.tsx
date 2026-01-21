@@ -1,14 +1,14 @@
 import { BrowserRouter } from "react-router";
 import Navigator from "./router/Navigator";
-import { AuthProvider } from "./hook/AuthContext";
+import { AppProviders } from "./hook";
 
 function App() {
   return (
-    <AuthProvider>
+    <AppProviders>
       <BrowserRouter>
         <Navigator></Navigator>
       </BrowserRouter>
-    </AuthProvider>
+    </AppProviders>
   );
 }
 

@@ -1,6 +1,10 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 
-export default function Header() {
+interface Props {
+  click: (event: React.MouseEvent<HTMLElement>) => void;
+}
+
+export default function Header({ click }: Props) {
   return (
     <AppBar
       position="fixed"
@@ -22,6 +26,7 @@ export default function Header() {
           <span>🔔</span>
 
           <Box
+            onClick={click}
             sx={{
               width: 36,
               height: 36,
